@@ -53,6 +53,7 @@ function renderProducts(products) {
         </button>
         <button class="btn-sm btn-delete" onclick="deleteProduct('${product.id}')">
           <i class="fa-solid fa-trash"></i> "delete"
+          <button class="edit-btn">✏️ Edit</button>
           
         </button>
       </div>
