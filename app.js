@@ -40,27 +40,26 @@ function renderProducts(products) {
     const card = document.createElement("div");
     card.className = "card";
 
-    card.innerHTML = `
-      <span class="category-badge">${product.category || 'General'}</span>
-      <img src="${product.image}" alt="${product.title}" onerror="this.src='https://via.placeholder.com/150'">
-      <div>
-        <h3>${escapeHtml(product.title)}</h3>
-        <div class="price">$${Number(product.price).toFixed(2)}</div>
-      </div>
-      <div class="card-actions">
-        <button class="btn-sm btn-edit" onclick="setupEdit('${product.id}')">
-          <i class="fa-solid fa-pen"></i> "edit"
-        </button>
-        <button class="btn-sm btn-delete" onclick="deleteProduct('${product.id}')">
-          <i class="fa-solid fa-trash"></i> "delete"
-          <button class="edit-btn">✏️ Edit</button>
-          
-        </button>
-      </div>
-    `;
+  card.innerHTML = `
+    <span class="category-badge">${product.category || 'General'}</span>
+    <img src="${product.image}" alt="${product.title}" onerror="this.src='https://via.placeholder.com/150'">
+    <div>
+      <h3>${escapeHtml(product.title)}</h3>       <div class="price">$${Number(product.price).toFixed(2)}</div>
+    </div>
+    <div class="card-actions">
+      <button class="btn-sm btn-edit" onclick="setupEdit('${product.id}')">
+        <i class="fa-solid fa-pen"></i> Edit
+      </button>
+      <button class="btn-sm btn-delete" onclick="deleteProduct('${product.id}')">
+        <i class="fa-solid fa-trash"></i> Delete
+      </button>
+    </div>
+  
+productsGrid.appendChild(card);
+});     
 
     productsGrid.appendChild(card);
-  });
+  })
 }
 
 // 3. POST & PUT (Create / Update)
