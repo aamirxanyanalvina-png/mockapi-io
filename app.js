@@ -49,10 +49,11 @@ function renderProducts(products) {
       </div>
       <div class="card-actions">
         <button class="btn-sm btn-edit" onclick="setupEdit('${product.id}')">
-          <i class="fa-solid fa-pen"></i> edit
+          <i class="fa-solid fa-pen"></i> "edit"
         </button>
         <button class="btn-sm btn-delete" onclick="deleteProduct('${product.id}')">
-          <i class="fa-solid fa-trash"></i> delete
+          <i class="fa-solid fa-trash"></i> "delete"
+          
         </button>
       </div>
     `;
