@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & E-Commerce Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1><i class="fa-solid fa-store"></i> Product Management Dashboard</h1>
+      <p>MockAPI integration via Async/Await & DOM Manipulation</p>
+    </header>
+
+    <!-- Top Controls: Search & Stats -->
+    <div class="controls-card">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search products by title...">
+      </div>
+      <div class="stats">
+        <span>Total Products: <strong id="totalCount">0</strong></span>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <!-- Sidebar / Form -->
+      <aside class="form-section">
+        <h2 id="formTitle"><i class="fa-solid fa-plus-circle"></i> Add Product</h2>
+        <form id="productForm">
+          <input type="hidden" id="productId"> <!-- Used for editing -->
+          
+          <div class="input-group">
+            <label for="title">Product Title</label>
+            <input type="text" id="title" placeholder="e.g. iPhone 15 Pro" required>
+          </div>
+
+          <div class="input-group">
+            <label for="price">Price ($)</label>
+            <input type="number" id="price" step="0.01" placeholder="e.g. 999.99" required>
+          </div>
+
+          <div class="input-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="Electronics">Electronics</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="image">Image URL</label>
+            <input type="url" id="image" placeholder="https://picsum.photos/300" required>
+          </div>
+
+          <button type="submit" id="saveBtn" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Product
+          </button>
+          <button type="button" id="cancelBtn" class="btn btn-secondary hidden">Cancel</button>
+        </form>
+      </aside>
+
+      <!-- Main Display Grid -->
+      <main class="grid-section">
+        <div id="loader" class="loader-box">
+          <div class="spinner"></div>
+          <p>Loading data...</p>
+        </div>
+
+        <div id="productsGrid" class="products-grid"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
