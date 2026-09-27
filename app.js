@@ -1,5 +1,4 @@
 const API_URL = "https://6ab948f9f84897980b728273.mockapi.io/products/products";
-
 const productsGrid = document.getElementById("productsGrid");
 const productForm = document.getElementById("productForm");
 const loader = document.getElementById("loader");
