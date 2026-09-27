@@ -17,7 +17,7 @@ async function getProducts() {
   showLoader(true);
   try {
     const response = await fetch(API_URL);
-    if (!response.ok) throw new Error("Սերվերի հետ կապի խափանում");
+    if (!response.ok) throw new Error("servers not work");
     
     allProducts = await response.json();
     renderProducts(allProducts);
@@ -34,7 +34,7 @@ function renderProducts(products) {
   totalCount.textContent = products.length;
 
   if (products.length === 0) {
-    productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Ապրանքներ չեն գտնվել</p>`;
+    productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">not this products</p>`;
     return;
   }
 
@@ -51,10 +51,10 @@ function renderProducts(products) {
       </div>
       <div class="card-actions">
         <button class="btn-sm btn-edit" onclick="setupEdit('${product.id}')">
-          <i class="fa-solid fa-pen"></i> Խմբագրել
+          <i class="fa-solid fa-pen"></i> edit
         </button>
         <button class="btn-sm btn-delete" onclick="deleteProduct('${product.id}')">
-          <i class="fa-solid fa-trash"></i> Ջնջել
+          <i class="fa-solid fa-trash"></i> delete
         </button>
       </div>
     `;
@@ -63,7 +63,7 @@ function renderProducts(products) {
   });
 }
 
-// 3. POST & PUT: Ավելացնել կամ Խմբագրել (Create / Update)
+// 3. POST & PUT (Create / Update)
 productForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -87,9 +87,9 @@ productForm.addEventListener("submit", async (e) => {
       body: JSON.stringify(productData)
     });
 
-    if (!response.ok) throw new Error("Գործողությունը չստացվեց");
+    if (!response.ok) throw new Error("action wos failed");
 
-    showToast(isEdit ? "Ապրանքը թարմացվեց!" : "Ապրանքն ավելացվեց!", "success");
+    showToast(isEdit ? "Ապրանքը թարմացվեց!" : "save a product!", "success");
     resetForm();
     getProducts();
   } catch (error) {
@@ -99,16 +99,16 @@ productForm.addEventListener("submit", async (e) => {
   }
 });
 
-// 4. DELETE: Ջնջել ապրանքը
+// 4. DELETE: 
 async function deleteProduct(id) {
-  if (!confirm("Վստա՞հ եք, որ ցանկանում եք ջնջել այս ապրանքը:")) return;
+  if (!confirm("delete product?")) return;
 
   try {
     showLoader(true);
     const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     if (!response.ok) throw new Error("Ջնջումը չստացվեց");
 
-    showToast("Ապրանքը հաջողությամբ ջնջվեց", "success");
+    showToast("products are delete", "success");
     getProducts();
   } catch (error) {
     showToast(error.message, "danger");
@@ -117,7 +117,7 @@ async function deleteProduct(id) {
   }
 }
 
-// 5. Խմբագրման ռեժիմի ակտիվացում (Form Edit setup)
+ (Form Edit setup)
 function setupEdit(id) {
   const product = allProducts.find(p => p.id === id);
   if (!product) return;
@@ -131,18 +131,16 @@ function setupEdit(id) {
   formTitle.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Խմբագրել Ապրանքը`;
   cancelBtn.classList.remove("hidden");
 }
-
-// Չեղարկել խմբագրումը
 cancelBtn.addEventListener("click", resetForm);
 
 function resetForm() {
   productForm.reset();
   document.getElementById("productId").value = "";
-  formTitle.innerHTML = `<i class="fa-solid fa-plus-circle"></i> Ավելացնել Ապրանք`;
+  formTitle.innerHTML = `<i class="fa-solid fa-plus-circle"></i> save product;
   cancelBtn.classList.add("hidden");
 }
 
-// 6. Search ֆունկցիոնալ (Իրական ժամանակում)
+// 6. Search )
 searchInput.addEventListener("input", (e) => {
   const searchTerm = e.target.value.toLowerCase();
   const filtered = allProducts.filter(p => 
@@ -151,7 +149,7 @@ searchInput.addEventListener("input", (e) => {
   renderProducts(filtered);
 });
 
-// Helper Functions (Օգնող ֆունկցիաներ)
+// Helper Functions 
 function showLoader(show) {
   loader.style.display = show ? "block" : "none";
 }
